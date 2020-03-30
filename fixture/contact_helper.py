@@ -1,13 +1,16 @@
+from selenium.webdriver.support.select import Select
+
+
 class ContactHelper:
-    def __int__(self, app):
-        self.app = app
+    def __init__(self, web_driver):
+        self.web_driver = web_driver
 
     def open_contact(self):
-        wd = self.app.wd
+        wd = self.web_driver
         wd.find_element_by_link_text("add new").click()
 
     def create(self, contact):
-        wd = self.app.wd
+        wd = self.web_driver
         self.open_contact()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -53,6 +56,6 @@ class ContactHelper:
         wd.find_element_by_xpath("//option[@value='January']").click()
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(byear)
+        wd.find_element_by_name("byear").send_keys(contact.byear)
         # submit
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()

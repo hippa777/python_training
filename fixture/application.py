@@ -1,17 +1,21 @@
 from selenium import webdriver
-from fixture.session import SessionHelper
-from fixture.group import GroupHelper
-from fixture.contact import ContactHelper
+
+from python_training.fixture import ContactHelper
+from python_training.fixture.group_helper import GroupHelper
+from python_training.fixture.session_helper import SessionHelper
 
 
 class Application:
-
-    def __int__(self):
-        self.wd = webdriver.Firefox()
+    def __init__(self):
+        webdriver_firefox = webdriver.Firefox()
+        self.wd = webdriver_firefox
         self.wd.implicitly_wait(30)
-        self.session = SessionHelper(self)
-        self.group = GroupHelper(self)
-        self.contact = ContactHelper(self)
+        # открываем домашнюю страницу приложения
+        self.open_home_page()
+        # инициализируем классы для работы с функциональностью приложения
+        self.contact_helper = ContactHelper(self.wd)
+        self.session_helper = SessionHelper(self.wd)
+        self.group_helper = GroupHelper(self.wd)
 
     def open_home_page(self):
         wd = self.wd
