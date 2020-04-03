@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from python_training.model import contact
+from model import contact
 
 
 def test_new_contact(app):
