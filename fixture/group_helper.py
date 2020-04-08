@@ -44,24 +44,6 @@ class GroupHelper:
         list = wd.find_elements_by_class_name("group")
         return list
 
-    def edit_first_group(self):
-        wd = self.web_driver
-        self.open_groups_page()
-        self.select_first_group()
-        wd.find_element_by_xpath("(//input[@name='edit'])[2]").click()
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys("777")
-        wd.find_element_by_name("group_header").click()
-        wd.find_element_by_name("group_header").click()
-        wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys("uuu")
-        wd.find_element_by_name("group_footer").click()
-        wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys("ppp")
-        wd.find_element_by_name("update").click()
-        self.return_to_groups_page()
-
     def select_first_group(self):
         wd = self.web_driver
         wd.find_element_by_name("selected[]").click()

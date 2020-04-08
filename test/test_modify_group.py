@@ -1,10 +1,6 @@
 from model.group import Group
 
 
-def test_modify_group(app):
-    app.group_helper.edit_first_group()
-
-
 def test_modify_group_name(app):
     app.group_helper.modify_first_group(Group(name="New group"))
 
