@@ -1,4 +1,4 @@
-def test_delete_first_contact(app):
+def test_modify_group(app):
     app.session_helper.login(username="admin", password="secret")
-    app.contact_helper.delete_first_contact()
+    app.group_helper.edit_first_group()
     app.session_helper.logout()
