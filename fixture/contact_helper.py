@@ -7,7 +7,9 @@ class ContactHelper:
 
     def open_contact(self):
         wd = self.web_driver
-        wd.find_element_by_link_text("add new").click()
+        if not (wd.current_url.endswith =="index.php"):
+            wd.find_element_by_link_text("add new").click()
+
 
     def create(self, contact):
         wd = self.web_driver
@@ -65,8 +67,7 @@ class ContactHelper:
     def select_first_contact(self):
         wd = self.web_driver
         wd.find_element_by_name("selected[]").click()
-        #if not wd.find_element_by_name("selected[]").click():
-            #raise Exception('ТЕКСТ ОШИБКИ!')
+
 
 
     def modify_first_contact(self, new_contact_data):
