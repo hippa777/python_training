@@ -5,10 +5,9 @@ class GroupHelper:
     def create(self, group):
         wd = self.web_driver
         self.open_groups_page()
-        # init group creation
         wd.find_element_by_name("new").click()
         self.fill_group_form(group)
-        # submit group creation
+        # подтверждение создания группы
         wd.find_element_by_name("submit").click()
         self.return_to_groups_page()
 
@@ -37,11 +36,12 @@ class GroupHelper:
         wd.find_element_by_name("delete").click()
         self.return_to_groups_page()
 
-    def get_list_group(self):
+    def get_group_list(self):
         # получаем список групп
         wd = self.web_driver
         self.open_groups_page()
         list = wd.find_elements_by_class_name("group")
+        self.return_to_home_page()
         return list
 
     def select_first_group(self):
@@ -63,3 +63,7 @@ class GroupHelper:
     def return_to_groups_page(self):
         wd = self.web_driver
         wd.find_element_by_link_text("group page").click()
+
+    def return_to_home_page(self):
+        wd = self.web_driver
+        wd.find_element_by_link_text("home").click()

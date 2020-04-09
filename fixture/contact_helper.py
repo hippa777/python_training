@@ -15,6 +15,7 @@ class ContactHelper:
         self.fill_contact_form(contact)
         # submit
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
+        self.return_to_home_page()
 
     def fill_contact_form(self, contact):
         wd = self.web_driver
@@ -64,6 +65,8 @@ class ContactHelper:
     def select_first_contact(self):
         wd = self.web_driver
         wd.find_element_by_name("selected[]").click()
+        #if not wd.find_element_by_name("selected[]").click():
+            #raise Exception('ТЕКСТ ОШИБКИ!')
 
 
     def modify_first_contact(self, new_contact_data):
@@ -78,6 +81,16 @@ class ContactHelper:
         wd.find_element_by_link_text("home page").click()
 
 
+    def return_to_home_page(self):
+        wd = self.web_driver
+        wd.find_element_by_link_text("home").click()
+
+    def get_contact_list(self):
+        # получаем список контактов
+        wd = self.web_driver
+        list = wd.find_elements_by_class_name("center")
+        self.return_to_home_page()
+        return list
 
 
 
