@@ -9,6 +9,7 @@ class Application:
     def __init__(self):
         webdriver_firefox = webdriver.Firefox()
         self.wd = webdriver_firefox
+        self.wd.implicitly_wait(30)
         # инициализируем классы для работы с функциональностью приложения
         self.session_helper = SessionHelper(self.wd)
         self.contact_helper = ContactHelper(self.wd)
