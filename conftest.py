@@ -4,7 +4,7 @@ from fixture.application import Application
 web_app = None
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def app():
     global web_app
     if web_app is None:
@@ -23,5 +23,5 @@ def stop(request):
         web_app.session_helper.ensure_logout()
         web_app.destroy()
 
-    request.addfinalizer(fin)
+    request.addfinalizer(fin)  
     return web_app

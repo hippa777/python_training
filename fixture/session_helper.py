@@ -14,7 +14,8 @@ class SessionHelper:
 
     def open_home_page(self):
         wd = self.wd
-        wd.get("http://localhost/addressbook/")
+        if not (wd.current_url.endswith == "http://localhost/addressbook/"):
+            wd.get("http://localhost/addressbook/")
 
     def logout(self):
         wd = self.wd
