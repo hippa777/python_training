@@ -23,4 +23,5 @@ def stop(request):
         web_app.session_helper.ensure_logout()
         web_app.destroy()
 
-    request.addfinalizer(fin)     return web_app
+    request.addfinalizer(fin)
+    return web_app
