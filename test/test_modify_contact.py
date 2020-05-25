@@ -12,4 +12,4 @@ def test_modify_contact_firstname(app):
     app.contact_helper.modify_first_contact(
         Contact(firstname="New firstname", middlename="New middlename", lastname="New lastname",
                 nickname="New nickname", company="New company", address="New address", home="11111111", mobile="22222",
-                work="33333", fax="44444", email="New@email", title="New title, bday="13", bmonth='June', byear='1900')
+                work="33333", fax="44444", email="New@email", bday="13", bmonth="June", byear="1900", title="New title"))
