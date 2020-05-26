@@ -84,14 +84,17 @@ class ContactHelper:
 
     def return_to_home_page(self):
         wd = self.web_driver
-        wd.find_element_by_link_text("home").click()
+        if not (wd.current_url.endswith ==("http://localhost/addressbook/")):
+            wd.find_element_by_link_text("home").click()
+
 
     def get_contact_list(self):
         # получаем список контактов
         wd = self.web_driver
-        list = wd.find_elements_by_class_name("center")
+        if not (wd.current_url.endswith == ("http://localhost/addressbook/")):
+            list_contact = wd.find_elements_by_class_name("center")
         self.return_to_home_page()
-        return list
+        return list_contact
 
 
 
