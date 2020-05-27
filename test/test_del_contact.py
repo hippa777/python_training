@@ -10,4 +10,9 @@ def test_delete_first_contact(app):
                     email="tata@tata.ru",
                     bday="17", bmonth="January", byear="2000", title="123"))
 
+    old_contact = app.contact_helper.get_contact_list()
     app.contact_helper.delete_first_contact()
+    new_contact = app.contact_helper.get_contact_list()
+    assert len(old_contact) - 1 == len(new_contact), 'После удаления контакта, количество контактов не изменилось'
+    old_contact[0:1] = []
+    assert old_contact == new_contact
