@@ -92,8 +92,7 @@ class ContactHelper:
         # получаем список контактов
         wd = self.web_driver
         self.return_to_home_page()
-        if not (wd.current_url.endswith == ("http://localhost/addressbook/")):
-            list_contact = wd.find_elements_by_class_name("center")
+        list_contact = wd.find_elements_by_class_name("center")
         return list_contact
 
 
