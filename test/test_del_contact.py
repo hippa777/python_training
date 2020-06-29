@@ -2,7 +2,7 @@ from model.contact import Contact
 
 
 def test_delete_first_contact(app):
-    if len(app.contact_helper.get_contact_list()) == 0:
+    if app.contact_helper.count() == 0:
         app.contact_helper.create(
             Contact(firstname="Tata", middlename="Dmitrievna", lastname="Ivanova", nickname="tata",
                     company="asd-groop", address="USSR", home="111111111",
