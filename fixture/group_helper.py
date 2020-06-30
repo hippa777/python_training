@@ -33,35 +33,38 @@ class GroupHelper:
             wd.find_element_by_link_text("groups").click()
 
     def delete_first_group(self):
+        self.delete_group_by_index(0)
+
+    def delete_group_by_index(self, index):
         wd = self.web_driver
         self.open_groups_page()
-        # select first group
-        wd.find_element_by_name("selected[]").click()
+        self.select_group_by_index(index)
         # submit deletion
         wd.find_element_by_name("delete").click()
-        self.return_to_groups_page()
+        self.return_to_home_page()
         self.group_cache = None
 
-    def get_group_list(self):
-        # получаем список групп
+    def select_group_by_index(self, index):
         wd = self.web_driver
-        self.open_groups_page()
-        list = wd.find_elements_by_class_name("group")
-        self.return_to_home_page()
-        return list
+        wd.find_elements_by_name("selected[]")[index].click()
+
 
     def select_first_group(self):
         wd = self.web_driver
-        wd.find_element_by_name("selected[]").click()
+        wd.find_elements_by_name("selected[]").click()
 
-    def modify_first_group(self, new_group_data):
+
+    def modify_first_group(self):
+        self.modify_group_by_index(0)
+
+    def modify_group_by_index(self, index, new_contact):
         wd = self.web_driver
         self.open_groups_page()
-        self.select_first_group()
+        self.select_group_by_index(index)
         # open modification form
         wd.find_element_by_name("edit").click()
         # fill group form
-        self.fill_group_form(new_group_data)
+        self.fill_group_form(new_contact)
         # submit modification
         wd.find_element_by_name("update").click()
         self.return_to_groups_page()

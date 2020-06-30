@@ -8,9 +8,13 @@ class ContactHelper:
 
     def open_contact(self):
         wd = self.web_driver
-        if not (wd.current_url.endswith =="index.php"):
+        if not (wd.current_url.endswith == "index.php"):
             wd.find_element_by_link_text("add new").click()
 
+    def open_home_page(self):
+        wd = self.web_driver
+        if not (wd.current_url == "http://localhost/addressbook/" and len(wd.find_elements_by_name("add")) > 0):
+            wd.find_element_by_link_text("home").click()
 
     def create(self, contact):
         wd = self.web_driver
@@ -60,40 +64,49 @@ class ContactHelper:
         wd.find_element_by_xpath(f'//option[@value=\'{field_value}\']').click()
 
     def delete_first_contact(self):
+        self.delete_contact_by_index(0)
+
+    def delete_contact_by_index(self, index):
         wd = self.web_driver
-        self.select_first_contact()
-        self.accept_next_alert = True
+        self.select_contact_by_index(index)
+        # self.accept_next_alert = True
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
+        self.open_home_page()
         self.contact_cache = None
 
     def select_first_contact(self):
         wd = self.web_driver
         wd.find_element_by_name("selected[]").click()
 
-
-
-    def modify_first_contact(self, new_contact_data):
+    def select_contact_by_index(self, index):
         wd = self.web_driver
-        self.select_first_contact()
+        wd.find_elements_by_name("selected[]")[index].click()
+
+    def modify_first_contact(self):
+        self.modify_contact_by_index(0)
+
+    def modify_contact_by_index(self, index, new_contact):
+        wd = self.web_driver
+        self.open_home_page()
+        self.select_contact_by_index(index)
         # open modification form
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
         # fill contact form
-        self.fill_contact_form(new_contact_data)
+        self.fill_contact_form(new_contact)
         # submit modification
         wd.find_element_by_name("update").click()
         wd.find_element_by_link_text("home page").click()
         self.contact_cache = None
 
-
     def return_to_home_page(self):
         wd = self.web_driver
-        if not (wd.current_url.endswith ==("http://localhost/addressbook/")):
+        if not (wd.current_url.endswith == ("http://localhost/addressbook/")):
             wd.find_element_by_link_text("home").click()
 
     def count(self):
         wd = self.web_driver
-        self.open_contact()
+        self.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
     contact_cache = None
@@ -112,7 +125,3 @@ class ContactHelper:
                 self.contact_cache.append(Contact(firstname=first_name, lastname=last_name, id=id))
 
         return list(self.contact_cache)
-
-
-
-
