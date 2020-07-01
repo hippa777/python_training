@@ -14,9 +14,7 @@ class Application:
         elif browser == "Ie":
             self.wd = webdriver.Ie()
         else:
-            raise ValueError("Unrecognized browser %s" % browser)
-        # webdriver_firefox = webdriver.Firefox()
-        # self.wd = webdriver_firefox
+            raise ValueError("Unrecognized browser %s") % browser
         self.wd.implicitly_wait(30)
         # инициализируем классы для работы с функциональностью приложения
         self.session_helper = SessionHelper(self.wd)

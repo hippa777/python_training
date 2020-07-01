@@ -16,6 +16,7 @@ def app(request):
             web_app = Application(browser=browser, base_url=base_url)
 
     web_app.session_helper.ensure_login(username="admin", password="secret")
+
     return web_app
 
 
