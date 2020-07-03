@@ -1,0 +1,26 @@
+[
+  {
+    "py/object": "model.contact.Contacts",
+    "firstname": "",
+    "middlename": "",
+    "lastname": "",
+    "nickname": null,
+    "title": null,
+    "company": null,
+    "homephone": "",
+    "mobilephone": "",
+    "workphone": "",
+    "all_phones_from_home_page": null,
+    "email1": null,
+    "email2": null,
+    "email3": null,
+    "all_email": null,
+    "address": "",
+    "fax": null,
+    "email": "",
+    "address2": null,
+    "secondary_phone": "",
+    "notes": null,
+    "id": null
+  }
+  ]
